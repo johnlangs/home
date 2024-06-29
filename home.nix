@@ -70,6 +70,7 @@
     pkgs.helix
     pkgs.tmux
     pkgs.xclip
+    pkgs.yazi
 
     pkgs.ripgrep
     pkgs.gnumake
