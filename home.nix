@@ -178,6 +178,7 @@
     ".config/alacritty/alacritty.toml".source = dotfiles/alacritty/alacritty.toml;
     ".config/helix/config.toml".source = dotfiles/helix/config.toml;
     ".config/helix/languages.toml".source = dotfiles/helix/languages.toml;
+    ".config/wezterm/wezterm.lua".source = dotfiles/wezterm/wezterm.lua;
   };
 
   home.sessionVariables = {
