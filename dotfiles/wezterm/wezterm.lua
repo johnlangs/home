@@ -5,6 +5,8 @@ config.font = wezterm.font({
 	family = "FiraMono",
 	harfbuzz_features = { "calt=1", "clig=1", "liga=1" },
 })
+
+-- 13 or 18
 config.font_size = 13
 
 config.color_scheme = "carbonfox"

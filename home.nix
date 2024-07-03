@@ -5,7 +5,7 @@
   home.homeDirectory = "/home/john";
 
   home.stateVersion = "24.05";
-  
+
   programs.zsh = {
     enable = true;
     autosuggestion.enable = true;
@@ -24,9 +24,11 @@
       "vup" = "vagrant up";
       "vssh" = "vagrant ssh";
       "vhalt" = "vagrant halt";
+
+      "neovide" = "nixGL neovide";
     };
 
-    initExtra = "source init_conda";
+    initExtra = ''export PATH="/home/john/.conda/bin:$PATH'';
   };
 
   programs.zoxide.enable = true;
@@ -37,7 +39,7 @@
     userEmail = "me@johnlangs.dev";
     extraConfig = {
       init = {
-        defaultBranch = "main";        
+        defaultBranch = "main";
       };
     };
   };
@@ -64,7 +66,7 @@
       add_newline = false;
     };
   };
-  
+
   home.packages = [
     pkgs.neovim
     pkgs.helix
@@ -88,14 +90,16 @@
     pkgs.pyright
 
     pkgs.rustup
-    
+
     pkgs.zig
     pkgs.zls
 
     pkgs.distrobox
 
+    pkgs.neovide
+
     (pkgs.writeShellScriptBin "init_zsh" ''
-      command -v zsh | sudo tee -a /etc/shells      
+      command -v zsh | sudo tee -a /etc/shells
       chsh -s $(which zsh)  
     '')
 
@@ -119,6 +123,13 @@
 
       cd ..
       rm -rf ./alacritty
+    '')
+
+    (pkgs.writeShellScriptBin "init_wezterm" ''
+      curl -fsSL https://apt.fury.io/wez/gpg.key | sudo gpg --yes --dearmor -o /usr/share/keyrings/wezterm-fury.gpg
+      echo 'deb [signed-by=/usr/share/keyrings/wezterm-fury.gpg] https://apt.fury.io/wez/ * *' | sudo tee /etc/apt/sources.list.d/wezterm.list
+      sudo apt-get update
+      sudo apt-get install wezterm
     '')
 
     (pkgs.writeShellScriptBin "init_conda" ''
@@ -150,7 +161,7 @@
 
       # Add current user to vboxusers group
       sudo usermod -a -G vboxusers $USER
-      
+
       # Install Vagrant
       wget -O- https://apt.releases.hashicorp.com/gpg | sudo gpg --dearmor -o /usr/share/keyrings/hashicorp-archive-keyring.gpg
       echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/hashicorp.list
@@ -179,10 +190,11 @@
     ".config/helix/config.toml".source = dotfiles/helix/config.toml;
     ".config/helix/languages.toml".source = dotfiles/helix/languages.toml;
     ".config/wezterm/wezterm.lua".source = dotfiles/wezterm/wezterm.lua;
+    ".config/nvim".source = dotfiles/nvim;
   };
 
   home.sessionVariables = {
-    EDITOR = "hx";
+    EDITOR = "nvim";
   };
 
   programs.home-manager.enable = true;
