@@ -832,7 +832,15 @@ require('lazy').setup({
       -- ... and there is more!
       --  Check out: https://github.com/echasnovski/mini.nvim
       require('mini.starter').setup()
-      require('mini.sessions').setup()
+      -- require('mini.sessions').setup()
+      -- local map = require 'mini.map'
+      -- require('mini.map').setup {
+      --   integrations = {
+      --     map.gen_integration.gitsigns(),
+      --     map.gen_integration.diagnostic(),
+      --   },
+      -- }
+      -- vim.keymap.set('n', '<Leader>mo', map.open)
     end,
   },
   { -- Highlight, edit, and navigate code
@@ -882,7 +890,7 @@ require('lazy').setup({
   -- require 'kickstart.plugins.lint',
   require 'kickstart.plugins.autopairs',
   require 'kickstart.plugins.neo-tree',
-  -- require 'kickstart.plugins.gitsigns', -- adds gitsigns recommend keymaps
+  require 'kickstart.plugins.gitsigns', -- adds gitsigns recommend keymaps
 
   -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
   --    This is the easiest way to modularize your config.

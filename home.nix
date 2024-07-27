@@ -11,6 +11,8 @@
     autosuggestion.enable = true;
     # autosuggestion.highlight = "fg=#ffffff,bg=cyan,bold,underline";
     shellAliases = {
+      "vi" = "nvim";
+
       "ll" = "ls -l";
       "la" = "ls -a";
       ".." = "cd ..";
@@ -28,7 +30,7 @@
       "neovide" = "nixGL neovide";
     };
 
-    initExtra = ''export PATH="/home/john/.conda/bin:$PATH'';
+    initExtra = ''export PATH="/home/john/.conda/bin:$PATH"'';
   };
 
   programs.zoxide.enable = true;
@@ -53,7 +55,7 @@
         style_user = "blue bold";
         style_root = "red bold";
         format = "[$user]($style) ";
-        disabled = false;
+        disabled = true;
         show_always = true;
       };
       hostname = {
@@ -74,6 +76,9 @@
     pkgs.xclip
     pkgs.yazi
 
+    pkgs.pfetch
+    pkgs.neofetch
+
     pkgs.ripgrep
     pkgs.gnumake
 
@@ -86,13 +91,13 @@
     pkgs.gotools
 
     pkgs.python3
-    pkgs.python311Packages.conda
+    # pkgs.python312Packages.conda
     pkgs.pyright
 
     pkgs.rustup
 
-    pkgs.zig
-    pkgs.zls
+    # pkgs.zig
+    # pkgs.zls
 
     pkgs.distrobox
 
